@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /downloads/
+Disallow: /temp/
+
+Sitemap: https://canvagrab.veronix.co/sitemap.xml

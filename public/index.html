@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canva Video Downloader – Download Videos from Canva Portfolio</title>
+  <meta name="description" content="Free Canva video downloader. Download every video from any Canva portfolio or Canva website page instantly. No login, no extensions, just paste the Canva link.">
+  <meta name="keywords" content="canva video downloader, download video from canva portfolio, canva website video downloader, canva portfolio video downloader, canva site video grabber, canva portfolio video extractor, download embedded canva video, free canva video downloader online, download all videos from canva page">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://canvagrab.veronix.co/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://canvagrab.veronix.co/">
+  <meta property="og:title" content="Canva Video Downloader – Download Videos from Canva Portfolio">
+  <meta property="og:description" content="Free Canva video downloader. Paste any Canva portfolio or website URL and download all embedded MP4 videos instantly. No extensions needed.">
+  <meta property="og:image" content="https://canvagrab.veronix.co/logo.png">
+  <meta property="og:site_name" content="CanvaGrab">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Canva Video Downloader – Download Videos from Canva Portfolio">
+  <meta name="twitter:description" content="Free tool to download all videos from any Canva portfolio page. No login, no extensions required.">
+  <meta name="twitter:image" content="https://canvagrab.veronix.co/logo.png">
+  <meta name="twitter:creator" content="@veronix_co">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+
+  <!-- Fonts: preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "CanvaGrab",
+        "url": "https://canvagrab.veronix.co/",
+        "description": "Free Canva video downloader. Download every video from any Canva portfolio or Canva website page instantly. No login or extension required.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "creator": { "@type": "Person", "name": "Parekh Prince", "url": "https://www.instagram.com/veronix.co/" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I download videos from a Canva portfolio?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Paste your Canva portfolio or site URL into CanvaGrab and click Download All. The tool automatically finds and downloads every embedded video as a clean MP4 file." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I download videos from any Canva site page?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. CanvaGrab works on Canva portfolio pages, Canva website pages, and any public Canva design published as a website." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is CanvaGrab free to use?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, CanvaGrab is completely free. No account, no subscription, and no hidden fees." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to install an extension to download Canva videos?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No extension or plugin is required. CanvaGrab is a web-based tool — just paste your URL and click download." }
+          },
+          {
+            "@type": "Question",
+            "name": "Are the downloaded Canva videos safe?",
+            "acceptedAnswer": { "@type": "Answer", "text": "All processing happens server-side and downloaded files are automatically deleted after 30 minutes. Your URL is never stored permanently." }
+          }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "CanvaGrab",
+        "url": "https://canvagrab.veronix.co/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://canvagrab.veronix.co/?url={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="CanvaGrab Home">
+        <img src="/logo.png" alt="CanvaGrab Logo" style="width:38px;height:38px;border-radius:10px;object-fit:cover;box-shadow:0 0 16px rgba(99,179,237,0.22);flex-shrink:0;">
+        <span class="nav-logo-text">CanvaGrab</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag"><span></span> Free Canva Video Downloader</div>
+    <h1>Download every video<br>from any <span class="grad">Canva page</span></h1>
+    <p>The fastest <strong>Canva video downloader</strong>. Paste any Canva portfolio or website URL and download all embedded MP4 videos — instantly, no login required.</p>
+
+    <!-- INPUT CARD -->
+    <div class="input-card" id="input-card">
+      <div class="input-label">🔗 Paste your Canva Portfolio or Site URL</div>
+      <div class="input-row">
+        <input type="url" id="url-input" class="url-input"
+          placeholder="https://yourname.my.canva.site/ or https://www.canva.com/design/..."
+          autocomplete="off" spellcheck="false" aria-label="Canva URL input" maxlength="500">
+        <button class="btn btn-ghost" id="paste-btn" aria-label="Paste URL">📋 Paste</button>
+        <button class="btn btn-primary" id="go-btn" aria-label="Start download">⚡ Download All</button>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div id="progress-section">
+      <div class="progress-card">
+        <div class="progress-header">
+          <div class="progress-title">
+            <div class="spinner" id="spinner"></div>
+            <span id="status-text">Initializing...</span>
+          </div>
+          <div class="progress-right">
+            <span class="status-badge badge-scraping" id="status-badge">Scraping</span>
+            <span class="progress-pct" id="progress-pct">0%</span>
+          </div>
+        </div>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar"></div></div>
+        <div class="log-box" id="log-box"></div>
+        <div id="error-wrap"></div>
+      </div>
+    </div>
+
+    <!-- VIDEOS -->
+    <div id="videos-section">
+      <div class="videos-header">
+        <div class="videos-title">📦 Your Videos <span class="count-badge" id="vid-count">0</span></div>
+        <button class="btn btn-ghost" id="reset-btn">🔄 New Download</button>
+      </div>
+      <div class="videos-grid" id="videos-grid"></div>
+      <p style="text-align:center;color:var(--text-muted);font-size:12px;margin-top:14px;">⏱ Files are automatically deleted after 30 minutes for privacy.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="container wide">
+    <div class="section-header">
+      <span class="section-tag">How it works</span>
+      <h2 class="section-title">Four steps to download Canva videos</h2>
+      <p class="section-subtitle">No extensions, no installs, no limits. Just paste and download.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">STEP 01</div>
+        <img src="/step1.png" alt="Paste Canva URL" class="step-img" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="step-img-placeholder" style="display:none">📋</div>
+        <div class="step-title">Paste the Canva URL</div>
+        <div class="step-desc">Open any Canva portfolio, design, or website page. Copy the URL from your browser and paste it into the input above.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">STEP 02</div>
+        <img src="/step2.png" alt="Scraping Canva video streams" class="step-img" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="step-img-placeholder" style="display:none">🔍</div>
+        <div class="step-title">We scrape the page</div>
+        <div class="step-desc">A headless browser loads your Canva page and intercepts every video and audio network request automatically.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">STEP 03</div>
+        <img src="/step3.png" alt="Download Canva MP4 videos" class="step-img" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="step-img-placeholder" style="display:none">⬇️</div>
+        <div class="step-title">Download your MP4s</div>
+        <div class="step-desc">Video and audio streams are merged with FFmpeg into standard MP4 files. Hover over cards to preview, then click Download.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">STEP 04</div>
+        <div class="step-img-placeholder">🎉</div>
+        <div class="step-title">Done — yours to keep</div>
+        <div class="step-desc">Files auto-delete after 30 minutes for your privacy. No account needed, no data stored permanently.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Features</span>
+      <h2 class="section-title">Everything you need</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-img-placeholder">🔊</div>
+        <div class="step-title">Audio + Video merged</div>
+        <div class="step-desc">Canva streams video and audio separately as DASH segments. We automatically detect, download, and merge them so your MP4 always has sound.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-img-placeholder">📱</div>
+        <div class="step-title">Works on any device</div>
+        <div class="step-desc">Fully responsive — use it on desktop, tablet, or mobile. The UI adapts perfectly to every screen size.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-img-placeholder">⚡</div>
+        <div class="step-title">Real-time progress</div>
+        <div class="step-desc">Live log feed shows every video found, downloaded, and encoded. Always know exactly what's happening.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SEO CONTENT SECTION -->
+<section class="section seo-section">
+  <div class="container" style="max-width:740px;">
+    <h2 class="seo-h2">Download Videos from Any Canva Portfolio Page</h2>
+    <p>Canva has become one of the most popular design tools on the web, used by millions of creators, freelancers, and businesses to build stunning portfolios, websites, and presentations. But if you've ever tried to <strong>download a video from a Canva portfolio page</strong>, you've likely run into a wall — Canva does not provide a native "download all videos" button on published sites.</p>
+    <p>That's exactly why <strong>CanvaGrab</strong> exists. It's a free, browser-based <strong>Canva video downloader</strong> that lets you paste any Canva portfolio or website URL and instantly download every embedded video as a clean, standard MP4 file — with audio included.</p>
+
+    <h2 class="seo-h2">Why Canva Videos Are Hard to Download</h2>
+    <p>Canva portfolio pages and Canva-published websites deliver videos using adaptive streaming — specifically the <strong>DASH (Dynamic Adaptive Streaming over HTTP)</strong> protocol. This means:</p>
+    <ul class="seo-list">
+      <li>Video and audio are served as <strong>separate streams</strong> (usually <code>.mp4</code> and <code>.m4a</code> files)</li>
+      <li>Standard right-click &gt; "Save video" only captures the video track — <strong>no audio</strong></li>
+      <li>Browser developer tools show dozens of fragmented network requests, making manual downloading impractical</li>
+      <li>YouTube downloaders and generic video scrapers don't understand Canva's URL structure</li>
+    </ul>
+    <p>CanvaGrab solves all of this by running a real headless browser, intercepting every media network request, then using <strong>FFmpeg to merge video and audio</strong> into a single complete MP4 — the same way a professional video editor would.</p>
+
+    <h2 class="seo-h2">How to Download Videos from Canva Portfolio</h2>
+    <ol class="seo-list">
+      <li><strong>Open the Canva page</strong> in your browser (portfolio, website, or design preview)</li>
+      <li><strong>Copy the full URL</strong> from the address bar (e.g. <code>https://yourname.my.canva.site/</code>)</li>
+      <li>Paste it into the <strong>CanvaGrab input box</strong> above and click <em>Download All</em></li>
+      <li>Watch the live progress as videos are detected and processed — usually takes <strong>15–30 seconds</strong></li>
+      <li>Click <strong>Download MP4</strong> on each video card to save it to your device</li>
+    </ol>
+    <p>That's it. No sign-up, no browser extension, no technical knowledge required. CanvaGrab handles everything automatically.</p>
+
+    <h2 class="seo-h2">Canva Video Downloader Features</h2>
+    <ul class="seo-list">
+      <li>✅ Works on <strong>Canva portfolio pages</strong>, Canva sites, and any public Canva design URL</li>
+      <li>✅ Downloads <strong>all videos on the page</strong> in one click — not just one at a time</li>
+      <li>✅ Automatically merges <strong>audio and video streams</strong> for complete playback</li>
+      <li>✅ Hover over any video card to <strong>preview before downloading</strong></li>
+      <li>✅ Files are <strong>automatically deleted after 30 minutes</strong> — your data is never permanently stored</li>
+      <li>✅ Completely <strong>free</strong> — no account, no subscription, no watermarks</li>
+      <li>✅ Fully <strong>responsive</strong> — works on desktop, tablet, and mobile</li>
+    </ul>
+
+    <h2 class="seo-h2" id="faq">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I download videos from a Canva portfolio? <span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Paste your Canva portfolio URL into the CanvaGrab input field above and click <em>Download All</em>. The tool automatically detects and downloads every embedded video on the page as an MP4 file with audio.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I download videos from any Canva site page? <span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. CanvaGrab works on all publicly accessible Canva-published pages — including portfolio sites (yourname.my.canva.site), Canva website pages, and public design preview URLs.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is CanvaGrab free to use? <span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. CanvaGrab is completely free. There's no account, no subscription, and no hidden fees. Just paste and download.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need to install a browser extension? <span class="faq-arrow">▾</span></div>
+        <div class="faq-a">No extension or plugin is needed. CanvaGrab is a web app — every tool runs server-side. Just open the website, paste your URL, and download.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is it safe to use CanvaGrab? <span class="faq-arrow">▾</span></div>
+        <div class="faq-a">Yes. Your URL is used only to scrape the public page. Downloaded files are stored temporarily on our server and automatically deleted after 30 minutes. No personal data is ever collected or stored permanently.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div style="margin-bottom:14px;">
+      <img src="/logo.png" alt="CanvaGrab" style="width:36px;height:36px;border-radius:9px;vertical-align:middle;margin-right:8px;opacity:0.8;" loading="lazy">
+      <span style="font-size:15px;font-weight:700;background:linear-gradient(135deg,#63b3ed,#9f7aea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">CanvaGrab</span>
+    </div>
+    <p style="margin-bottom:6px;color:#4a5568;font-size:13px;">Free Canva video downloader &nbsp;·&nbsp; For personal use only &nbsp;·&nbsp; Respect Canva's ToS</p>
+    <p style="font-size:13px;margin-bottom:14px;">
+      Made with ❤️ by <strong style="color:#e2e8f0;">Parekh Prince</strong>
+      &nbsp;·&nbsp;
+      <a href="https://www.instagram.com/veronix.co/" target="_blank" rel="noopener"
+        style="color:#9f7aea;text-decoration:none;font-weight:600;">@veronix.co</a>
+    </p>
+    <nav aria-label="SEO links" style="font-size:12px;color:#4a5568;">
+      <a href="/how-to-download-canva-videos" style="color:#4a5568;text-decoration:none;margin:0 8px;">How to Download Canva Videos</a>·
+      <a href="/canva-video-downloader" style="color:#4a5568;text-decoration:none;margin:0 8px;">Canva Video Downloader Guide</a>·
+      <a href="/canva-portfolio-video-downloader" style="color:#4a5568;text-decoration:none;margin:0 8px;">Canva Portfolio Downloader</a>
+    </nav>
+  </div>
+</footer>
+
+<div id="toasts"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const urlInput=$('url-input'),goBtn=$('go-btn'),pasteBtn=$('paste-btn');
+const progressSection=$('progress-section'),videosSection=$('videos-section');
+const progressBar=$('progress-bar'),progressPct=$('progress-pct');
+const statusText=$('status-text'),statusBadge=$('status-badge');
+const logBox=$('log-box'),videosGrid=$('videos-grid'),vidCount=$('vid-count');
+const spinner=$('spinner'),resetBtn=$('reset-btn'),errorWrap=$('error-wrap');
+let sse=null;
+
+pasteBtn.onclick=async()=>{
+  try{const t=await navigator.clipboard.readText();urlInput.value=t.trim();urlInput.focus();toast('📋 Pasted!','ok');}
+  catch{toast('Use Ctrl+V to paste','err');}
+};
+urlInput.onkeydown=e=>{if(e.key==='Enter')start();};
+goBtn.onclick=start;resetBtn.onclick=reset;
+
+async function start(){
+  const url=urlInput.value.trim();
+  if(!url){toast('Please enter a URL','err');urlInput.focus();return;}
+  if(!url.startsWith('http')){toast('Invalid URL — must start with http','err');return;}
+  if(url.length>500){toast('URL is too long','err');return;}
+  if(sse){sse.close();sse=null;}
+  logBox.innerHTML='';videosGrid.innerHTML='';errorWrap.innerHTML='';
+  videosSection.style.display='none';
+  progressSection.style.display='block';
+  goBtn.disabled=true;spinner.style.display='block';
+  setProgress(0);setStatus('queued','Submitting...');
+  try{
+    const r=await fetch('/api/scrape',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url})});
+    const d=await r.json();
+    if(!r.ok||d.error)throw new Error(d.error||'Server error');
+    sse=new EventSource('/api/events/'+d.jobId);
+    sse.onmessage=e=>handle(JSON.parse(e.data));
+    sse.onerror=()=>fetch('/api/status/'+d.jobId).then(x=>x.json()).then(handle).catch(()=>{});
+  }catch(e){setStatus('error','Failed');addLog('Error: '+e.message,'error');goBtn.disabled=false;}
+}
+
+function handle(d){
+  setProgress(d.progress||0);
+  setStatus(d.status,{queued:'Queued…',scraping:'Scraping page…',downloading:'Downloading & encoding…',done:'Complete!',error:'Error'}[d.status]||d.status);
+  if(d.logs){logBox.innerHTML='';d.logs.forEach(l=>addLog(l.message,l.type,l.time));logBox.scrollTop=logBox.scrollHeight;}
+  if(d.videos?.length)renderVideos(d.videos);
+  if(d.status==='done'||d.status==='error'){
+    spinner.style.display='none';goBtn.disabled=false;
+    if(sse){sse.close();sse=null;}
+    if(d.status==='done'){
+      if(d.videos?.length){videosSection.style.display='block';toast(`✅ ${d.videos.length} video(s) ready!`,'ok');}
+      else showError(d.error||'No videos found on this page.');
+    }else{showError(d.error||'An unexpected error occurred.');toast('❌ Failed','err');}
+  }
+}
+
+function renderVideos(vids){
+  videosSection.style.display='block';vidCount.textContent=vids.length;videosGrid.innerHTML='';
+  vids.forEach((v,i)=>{
+    const c=document.createElement('div');c.className='video-card';c.style.animationDelay=i*60+'ms';
+    c.innerHTML=`<video class="video-thumb" src="${v.url}" muted loop preload="metadata" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0"></video>
+    <div class="video-body">
+      <div class="video-name"><span>${esc(v.label)}</span><span class="audio-tag ${v.hasAudio?'on':'off'}">${v.hasAudio?'🔊 Audio':'🔇 Muted'}</span></div>
+      <div class="video-size">📁 ${esc(v.size)}</div>
+      <a href="${v.downloadUrl}" class="dl-btn" download="${esc(v.filename)}">⬇️ Download MP4</a>
+    </div>`;
+    videosGrid.appendChild(c);
+  });
+}
+
+function showError(msg){errorWrap.innerHTML=`<div class="error-box"><div class="icon">⚠️</div><div><div class="error-title">Something went wrong</div><div class="error-msg">${esc(msg)}</div></div></div>`;}
+function addLog(msg,type='info',time){
+  const d=document.createElement('div');d.className='log-entry';
+  const t=time?new Date(time).toLocaleTimeString():new Date().toLocaleTimeString();
+  d.innerHTML=`<span class="log-time">${t}</span><span class="log-${type}">${esc(msg)}</span>`;
+  logBox.appendChild(d);logBox.scrollTop=logBox.scrollHeight;
+}
+function setProgress(p){progressBar.style.width=p+'%';progressPct.textContent=p+'%';}
+function setStatus(s,txt){
+  statusText.textContent=txt||s;
+  statusBadge.className='status-badge badge-'+(s||'scraping');
+  statusBadge.textContent=s?s[0].toUpperCase()+s.slice(1):'';
+}
+function reset(){
+  progressSection.style.display='none';videosSection.style.display='none';
+  errorWrap.innerHTML='';logBox.innerHTML='';videosGrid.innerHTML='';
+  goBtn.disabled=false;spinner.style.display='block';urlInput.value='';urlInput.focus();
+  if(sse){sse.close();sse=null;}
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function toast(msg,type='ok'){
+  const c=$('toasts'),t=document.createElement('div');
+  t.className=`toast ${type}`;t.textContent=msg;c.appendChild(t);
+  setTimeout(()=>{t.style.animation='toastOut 0.3s ease forwards';setTimeout(()=>t.remove(),300);},3500);
+}
+window.addEventListener('load',()=>urlInput.focus());
+</script>
+</body>
+</html>

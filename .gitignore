@@ -1,0 +1,6 @@
+node_modules/
+downloads/
+temp/
+*.log
+page_source.html
+.env
