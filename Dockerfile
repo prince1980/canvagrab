@@ -1,6 +1,6 @@
 FROM node:20-slim
 
-# Install system deps for Playwright Firefox + FFmpeg
+# Install system deps for Playwright Chromium + FFmpeg
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     && rm -rf /var/lib/apt/lists/*
@@ -11,8 +11,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-# Install Playwright Firefox browser
-RUN npx playwright install firefox --with-deps
+# Install Playwright Chromium browser
+RUN npx playwright install chromium --with-deps
 
 # Copy app code
 COPY . .

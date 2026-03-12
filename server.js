@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const { firefox } = require('playwright');
+const { chromium } = require('playwright');
 const axios = require('axios');
 const ffmpeg = require('ffmpeg-static');
 const { execSync } = require('child_process');
@@ -214,7 +214,23 @@ async function scrapeAndDownload(jobId, targetUrl) {
         let seenVideos = new Set();
         let seenAudios = new Set();
 
-        browser = await firefox.launch({ headless: true });
+        browser = await chromium.launch({
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--no-first-run',
+                '--no-zygote',
+                '--single-process',
+                '--disable-gpu'
+            ],
+            timeout: 60000 // 1 min timeout for launch
+        });
+        jobLog(jobId, 'Browser launched successfully.', 'success');
+        updateJob(jobId, { progress: 8 });
+
         const context = await browser.newContext({
             userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0'
         });
