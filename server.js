@@ -176,22 +176,6 @@ app.post('/api/scrape', async (req, res) => {
     scrapeAndDownload(jobId, rawUrl);
 });
 
-// Debug endpoint - TEMP: check file serving
-app.get('/api/debug', (req, res) => {
-    const result = {
-        __dirname,
-        publicDir,
-        publicExists: fs.existsSync(publicDir),
-        publicContents: fs.existsSync(publicDir) ? fs.readdirSync(publicDir) : 'N/A',
-        styleCssExists: fs.existsSync(path.join(publicDir, 'style.css')),
-        indexHtmlExists: fs.existsSync(path.join(publicDir, 'index.html')),
-        logoExists: fs.existsSync(path.join(publicDir, 'logo.png')),
-        robotsExists: fs.existsSync(path.join(publicDir, 'robots.txt')),
-        cwd: process.cwd(),
-    };
-    res.json(result);
-});
-
 // SEO redirect pages (static HTML served from /public subfolders)
 // robots.txt and sitemap.xml are served as static files from /public
 
