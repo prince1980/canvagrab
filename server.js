@@ -239,9 +239,24 @@ async function scrapeAndDownload(jobId, targetUrl) {
         page.on('response', async response => {
             try {
                 const url = response.url();
-                const type = response.request().resourceType();
+                const req = response.request();
+                const type = req.resourceType();
                 const ct = response.headers()['content-type'] || '';
-                if ((url.includes('.mp4') || (type === 'media' && ct.includes('video'))) && !seenVideos.has(url)) {
+                
+                // Diagnostic logging for media-like requests
+                const isMediaMatch = url.includes('.mp4') || url.includes('.m4s') || 
+                                     url.includes('.m4v') || ct.includes('video') || 
+                                     url.includes('media-proxy.canva.com') ||
+                                     url.includes('videostream');
+                
+                if (isMediaMatch && !seenVideos.has(url)) {
+                    // Send a sample to logs to help user debug if nothing is found
+                    if (seenVideos.size === 0 && !url.includes('.m4s')) {
+                        jobLog(jobId, `Checking: ${url.split('?')[0].split('/').pop().substring(0, 30)}...`, 'info');
+                    }
+                }
+
+                if ((url.includes('.mp4') || (type === 'media' && ct.includes('video')) || (url.includes('media-proxy.canva.com') && ct.includes('video'))) && !seenVideos.has(url)) {
                     seenVideos.add(url);
                     pairs.push({ video: url, audio: null });
                     jobLog(jobId, `Found video stream #${pairs.length}`, 'success');
@@ -259,10 +274,9 @@ async function scrapeAndDownload(jobId, targetUrl) {
         jobLog(jobId, 'Navigating to page...', 'info');
         updateJob(jobId, { progress: 10 });
 
-        await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+        await page.goto(targetUrl, { waitUntil: 'networkidle', timeout: 60000 });
         updateJob(jobId, { progress: 20 });
 
-        await page.waitForTimeout(1500);
         jobLog(jobId, 'Scrolling to trigger lazy-loaded videos...', 'info');
 
         const pageHeight = await page.evaluate(() => document.body.scrollHeight);
@@ -336,4 +350,22 @@ async function scrapeAndDownload(jobId, targetUrl) {
     }
 }
 
-app.listen(PORT, () => console.log(`\n🚀 CanvaGrab running at http://localhost:${PORT}\n`));
+app.listen(PORT, () => {
+    console.log(`\n🚀 CanvaGrab running at http://localhost:${PORT}\n`);
+
+    // ── KEEP-ALIVE SELF-PING ─────────────────────────────────────────────────
+    // Render.com (free tier) shuts down after 15 min of inactivity.
+    // We ping ourselves every 14 minutes to stay awake.
+    const SELF_URL = process.env.RENDER_EXTERNAL_URL
+        ? `${process.env.RENDER_EXTERNAL_URL}/`
+        : `http://localhost:${PORT}/`;
+
+    setInterval(async () => {
+        try {
+            await axios.get(SELF_URL, { timeout: 10000 });
+            console.log(`[keep-alive] Pinged ${SELF_URL} ✓`);
+        } catch (err) {
+            console.warn(`[keep-alive] Ping failed: ${err.message}`);
+        }
+    }, 10 * 60 * 1000); // every 10 minutes
+});
